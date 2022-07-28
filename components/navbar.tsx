@@ -15,7 +15,7 @@ import {
   Button,
   PopoverTrigger,
   Popover,
-  Text,
+  Image,
   useDisclosure
 } from "@chakra-ui/react";
 
@@ -342,9 +342,12 @@ export default function NavBar() {
           >
             <Flex align="flex-start">
               <Link href="/">
-                <HStack>
-                  <Text>LOGO</Text>
-                </HStack>
+                <Image
+                  alt="logo"
+                  w={'auto'}
+                  h={12}
+                  src={'/logo-white.png'}
+                />
               </Link>
             </Flex>
             <Flex>
@@ -432,7 +435,6 @@ export default function NavBar() {
                   }}
                   variant="solid"
                   bg="brand.100"
-                  size="lg"
                 >
                   Enter App
                 </Button>
