@@ -15,6 +15,8 @@
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@fontsource/fira-code": "^4.5.10",
+    "@fontsource/montserrat": "^4.5.11",
+    "@fontsource/open-sans": "^4.5.10",
     "framer-motion": "^6.5.1",
     "next": "12.2.3",
     "react": "18.2.0",

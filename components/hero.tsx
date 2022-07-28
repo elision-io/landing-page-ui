@@ -8,12 +8,18 @@ import {
 
 export default function Hero() {
   return (
-    <Flex px={4} py={32} mx="auto">
+    <Flex
+      px={4}
+      py={32}
+      maxW={1200}
+      mx={"auto"}
+      bg="brand.400"
+      w={"full"}
+    >
       <Box
-        mx="auto"
         w={{
           lg: 8 / 12,
-          xl: 5 / 12,
+          xl: 5 / 11,
         }}
       >
         <chakra.h1
@@ -22,12 +28,9 @@ export default function Hero() {
             base: "3xl",
             md: "4xl",
           }}
-          fontWeight="bold"
-          lineHeight="shorter"
-          color="gray.900"
-          _dark={{
-            color: "white",
-          }}
+          fontWeight={'thin'}
+          lineHeight={"taller"}
+          color="brand.100"
         >
           Options trading made easy
         </chakra.h1>

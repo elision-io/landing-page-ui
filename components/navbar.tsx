@@ -16,8 +16,6 @@ import {
   PopoverTrigger,
   Popover,
   Text,
-  useColorMode,
-  useColorModeValue,
   useDisclosure
 } from "@chakra-ui/react";
 
@@ -28,15 +26,11 @@ import {
 } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io"
 import { BsFillCameraVideoFill } from "react-icons/bs"
-import { FaSun, FaMoon } from "react-icons/fa";
 import { useScroll } from "framer-motion";
 
 
 export default function NavBar() {
-  const { toggleColorMode: toggleMode } = useColorMode();
-  const text = useColorModeValue("dark", "light");
-  const SwitchIcon = useColorModeValue(FaMoon, FaSun);
-  const bg = useColorModeValue("white", "gray.800");
+  const bg = "brand.400"
   const ref = React.useRef(null);
   const [y, setY] = React.useState(0);
   const height = ref.current ? ref.current.getBoundingClientRect() : 0;
@@ -44,14 +38,15 @@ export default function NavBar() {
   React.useEffect(() => {
     return scrollY.onChange(() => setY(scrollY.get()));
   }, [scrollY]);
-  const cl = useColorModeValue("gray.800", "white");
+  const cl = "brand.100"
   const mobileNav = useDisclosure();
 
   const Section = (props: any) => {
-    const ic = useColorModeValue("brand.600", "brand.50");
-    const hbg = useColorModeValue("gray.50", "brand.400");
-    const tcl = useColorModeValue("gray.900", "gray.50");
-    const dcl = useColorModeValue("gray.500", "gray.50");
+    const ic = "brand.50"
+    const hbg = "brand.400"
+    const tcl = "gray.50"
+    const dcl = "gray.50"
+
     return (
       <Link
         m={-3}
@@ -89,9 +84,10 @@ export default function NavBar() {
   };
 
   const Features = (props: any) => {
-    const hbg = useColorModeValue("gray.50", "brand.400");
-    const hbgh = useColorModeValue("gray.100", "brand.500");
-    const tcl = useColorModeValue("gray.900", "gray.50");
+    const hbgh = "brand.300"
+    const hbg = "brand.400"
+    const tcl = "brand.50"
+
     return (
       <React.Fragment>
         <SimpleGrid
@@ -363,7 +359,7 @@ export default function NavBar() {
                   <PopoverTrigger>
                     <Button
                       bg={bg}
-                      color="gray.500"
+                      color="brand.50"
                       display="inline-flex"
                       alignItems="center"
                       fontSize="md"
@@ -390,7 +386,7 @@ export default function NavBar() {
                 </Popover>
                 <Button
                   bg={bg}
-                  color="gray.500"
+                  color="brand.50"
                   display="inline-flex"
                   alignItems="center"
                   fontSize="md"
@@ -405,7 +401,7 @@ export default function NavBar() {
                 </Button>
                 <Button
                   bg={bg}
-                  color="gray.500"
+                  color="brand.50"
                   display="inline-flex"
                   alignItems="center"
                   fontSize="md"
@@ -432,19 +428,6 @@ export default function NavBar() {
                   Enter App
                 </Button>
               </HStack>
-              <IconButton
-                size="md"
-                fontSize="lg"
-                aria-label={`Switch to ${text} mode`}
-                variant="ghost"
-                color="current"
-                ml={{
-                  base: "0",
-                  md: "3",
-                }}
-                onClick={toggleMode}
-                icon={<SwitchIcon />}
-              />
               <IconButton
                 display={{
                   base: "flex",
