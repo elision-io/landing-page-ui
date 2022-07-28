@@ -8,14 +8,14 @@ import {
 
 export default function Hero() {
   return (
-    <Flex
-      px={4}
-      py={32}
-      maxW={1200}
-      mx={"auto"}
-      bg="brand.400"
-      w={"full"}
-    >
+    <Flex bg="brand.400">
+      <Box
+        px={4}
+        py={32}
+        maxW={1200}
+        mx={"auto"}
+        w={"full"}
+      >
       <Box
         w={{
           lg: 8 / 12,
@@ -36,7 +36,7 @@ export default function Hero() {
         </chakra.h1>
         <chakra.p
           mb={5}
-          color="gray.500"
+          color="brand.50"
           fontSize={{
             md: "lg",
           }}
@@ -72,12 +72,18 @@ export default function Hero() {
             }}
             size="lg"
             cursor="pointer"
+            color="brand.500"
+            _hover={{
+              color: "brand.50",
+              bg: "brand.200"
+            }}
             variant="solid"
-            colorScheme="teal"
+            bg="brand.100"
           >
             Start Trading
           </Button>
         </HStack>
+      </Box>
       </Box>
     </Flex>
   )

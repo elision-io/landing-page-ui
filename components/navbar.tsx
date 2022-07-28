@@ -424,7 +424,16 @@ export default function NavBar() {
                   md: "flex",
                 }}
               >
-                <Button colorScheme="teal" variant="solid" size="sm">
+                <Button
+                  color="brand.500"
+                  _hover={{
+                    color: "brand.50",
+                    bg: "brand.200"
+                  }}
+                  variant="solid"
+                  bg="brand.100"
+                  size="lg"
+                >
                   Enter App
                 </Button>
               </HStack>

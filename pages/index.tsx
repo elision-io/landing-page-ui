@@ -3,9 +3,10 @@ import { Box } from "@chakra-ui/react";
 import Hero from "components/hero"
 import Features from "components/features";
 import Milestones from "components/timeline";
+
 const Home: NextPage = () => {
   return (
-    <Box>
+    <Box bg="brand.400">
       <Hero />
       <Features />
       <Milestones />
