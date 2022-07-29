@@ -8,7 +8,13 @@ import {
 
 export default function Hero() {
   return (
-    <Flex>
+    <Flex
+      bgImage={'/path.svg'}
+      bgPos={'bottom'}
+      bgSize={'contain'}
+      bgRepeat={'no-repeat'}
+      height={'85vh'}
+    >
       <Box
         px={4}
         py={32}
@@ -64,10 +70,10 @@ export default function Hero() {
               size="lg"
               cursor="pointer"
               color="elision.500"
-              _hover={{
-                color: "elision.50",
-                bg: "elision.200"
-              }}
+                _hover={{
+                  color: "elision.50",
+                  bg: "elision.200"
+                }}
               variant="solid"
               bg="elision.100"
             >

@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import Hero from "components/hero"
 import Features from "components/features";
 import Milestones from "components/timeline";
@@ -8,8 +8,17 @@ const Home: NextPage = () => {
   return (
     <Box>
       <Hero />
-      <Features />
-      <Milestones />
+      <Flex
+        bgGradient={'linear(to-b, #867df9, #82eaff)'}
+        bgSize={'contain'}
+        bgRepeat={'no-repeat'}
+        mt={-1}
+        flexDir={'column'}
+        overflow={'visible'}
+      >
+        <Features />
+        <Milestones />
+      </Flex>
     </Box>
   )
 }

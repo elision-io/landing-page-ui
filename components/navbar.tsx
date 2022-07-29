@@ -391,7 +391,7 @@ export default function NavBar() {
                     boxShadow: "none",
                   }}
                 >
-                  Blog
+                  Learn
                 </Button>
                 <Button
                   bg={bg}
@@ -406,7 +406,7 @@ export default function NavBar() {
                     boxShadow: "none",
                   }}
                 >
-                  Pricing
+                  About
                 </Button>
               </HStack>
             </Flex>

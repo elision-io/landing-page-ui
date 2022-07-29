@@ -83,7 +83,16 @@ const features: IFeature[] = [
 
 export default function Features() {
   return (
-    <Container maxW="6xl" p={{ base: 5, md: 10 }}>
+      <Box
+        px={4}
+        p={{ base: 5, md: 10 }}
+        py={32}
+        maxW={1200}
+        mx={"auto"}
+        w={"full"}
+        height={'85vh'}
+      >
+
       <chakra.h3 fontSize="4xl" fontWeight="bold" mb={20} textAlign="center">
         Everything your app needs and more
       </chakra.h3>
@@ -124,6 +133,6 @@ export default function Features() {
           </Box>
         ))}
       </SimpleGrid>
-    </Container>
+    </Box>
   );
 };
