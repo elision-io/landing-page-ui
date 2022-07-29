@@ -6,7 +6,7 @@ import Milestones from "components/timeline";
 
 const Home: NextPage = () => {
   return (
-    <Box bg="brand.400">
+    <Box>
       <Hero />
       <Features />
       <Milestones />

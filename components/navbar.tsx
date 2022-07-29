@@ -30,7 +30,7 @@ import { useScroll } from "framer-motion";
 
 
 export default function NavBar() {
-  const bg = "brand.400"
+  const bg = "elision.600"
   const ref = React.useRef(null);
   const [y, setY] = React.useState(0);
   const height = ref.current ? ref.current.getBoundingClientRect() : 0;
@@ -42,8 +42,8 @@ export default function NavBar() {
   const mobileNav = useDisclosure();
 
   const Section = (props: any) => {
-    const ic = "brand.50"
-    const hbg = "brand.400"
+    const ic = "elision.50"
+    const hbg = "elision.600"
     const tcl = "gray.50"
     const dcl = "gray.50"
 
@@ -71,7 +71,7 @@ export default function NavBar() {
         >
           {props.icon}
         </chakra.svg>
-        <Box ml={4}>
+        <Box>
           <chakra.p fontSize="sm" fontWeight="700" color={tcl}>
             {props.title}
           </chakra.p>
@@ -85,8 +85,8 @@ export default function NavBar() {
 
   const Features = (props: any) => {
     const hbgh = "brand.300"
-    const hbg = "brand.400"
-    const tcl = "brand.50"
+    const hbg = "elision.600"
+    const tcl = "elision.50"
 
     return (
       <React.Fragment>
@@ -324,33 +324,24 @@ export default function NavBar() {
     <React.Fragment>
       <chakra.header
         ref={ref}
-        shadow={y > height ? "sm" : undefined}
+        shadow={y > height ? "lg" : undefined}
         transition="box-shadow 0.2s"
-        bg={bg}
-        borderTop="6px solid"
-        borderTopColor="brand.400"
         w="full"
         overflowY="hidden"
       >
-        <chakra.div h="4.5rem" mx="auto" maxW="1200px">
-          <Flex
-            w="full"
-            h="full"
-            px="6"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Flex align="flex-start">
+        <chakra.div maxW="1200px" mx={'auto'}>
+          <Flex justifyContent="space-between">
+            <Flex>
               <Link href="/">
                 <Image
                   alt="logo"
-                  w={'auto'}
-                  h={12}
-                  src={'/logo-white.png'}
+                  m={'8px'}
+                  boxSize={75}
+                  src={'/icon-white.png'}
                 />
               </Link>
             </Flex>
-            <Flex>
+            <Flex alignItems="normal" m={8}>
               <HStack
                 spacing="5"
                 display={{
@@ -362,10 +353,10 @@ export default function NavBar() {
                   <PopoverTrigger>
                     <Button
                       bg={bg}
-                      color="brand.50"
+                      color="elision.50"
                       display="inline-flex"
                       alignItems="center"
-                      fontSize="md"
+                      fontSize="lg"
                       _hover={{
                         color: cl,
                       }}
@@ -389,7 +380,7 @@ export default function NavBar() {
                 </Popover>
                 <Button
                   bg={bg}
-                  color="brand.50"
+                  color="elision.50"
                   display="inline-flex"
                   alignItems="center"
                   fontSize="md"
@@ -404,7 +395,7 @@ export default function NavBar() {
                 </Button>
                 <Button
                   bg={bg}
-                  color="brand.50"
+                  color="elision.50"
                   display="inline-flex"
                   alignItems="center"
                   fontSize="md"
@@ -428,10 +419,10 @@ export default function NavBar() {
                 }}
               >
                 <Button
-                  color="brand.500"
+                  color="elision.500"
                   _hover={{
-                    color: "brand.50",
-                    bg: "brand.200"
+                    color: "elision.50",
+                    bg: "elision.200"
                   }}
                   variant="solid"
                   bg="brand.100"
