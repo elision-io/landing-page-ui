@@ -12,8 +12,7 @@ export const mainTheme: Record<string, any> = extendTheme({
   styles: {
     global: {
       header: {
-        height: "6.5rem",
-        bg: "#1f1f1f",
+        bg: "#262626",
       },
       body: {
         bg: "#1f1f1f"

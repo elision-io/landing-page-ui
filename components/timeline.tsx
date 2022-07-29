@@ -161,7 +161,7 @@ const LineWithDot = () => {
           right="0"
           width="100%"
           height="100%"
-          backgroundSize="cover"
+          backgroundSize="contain"
           backgroundRepeat="no-repeat"
           backgroundPosition="center center"
           bg={useColorModeValue('gray.600', 'gray.200')}

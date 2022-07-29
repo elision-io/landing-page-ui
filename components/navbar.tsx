@@ -30,7 +30,7 @@ import { useScroll } from "framer-motion";
 
 
 export default function NavBar() {
-  const bg = "elision.600"
+  const bg = "elision.500"
   const ref = React.useRef(null);
   const [y, setY] = React.useState(0);
   const height = ref.current ? ref.current.getBoundingClientRect() : 0;
@@ -43,7 +43,7 @@ export default function NavBar() {
 
   const Section = (props: any) => {
     const ic = "elision.50"
-    const hbg = "elision.600"
+    const hbg = "elision.500"
     const tcl = "gray.50"
     const dcl = "gray.50"
 
@@ -85,7 +85,7 @@ export default function NavBar() {
 
   const Features = (props: any) => {
     const hbgh = "brand.300"
-    const hbg = "elision.600"
+    const hbg = "elision.500"
     const tcl = "elision.50"
 
     return (
@@ -304,7 +304,7 @@ export default function NavBar() {
         onClick={mobileNav.onClose}
       />
       <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
-        Dashboard
+        Features
       </Button>
       <Button
         w="full"
@@ -312,10 +312,10 @@ export default function NavBar() {
         colorScheme="brand"
         leftIcon={<AiOutlineInbox />}
       >
-        Inbox
+        Learn
       </Button>
       <Button w="full" variant="ghost" leftIcon={<BsFillCameraVideoFill />}>
-        Videos
+        About
       </Button>
     </VStack>
   );
@@ -329,25 +329,32 @@ export default function NavBar() {
         w="full"
         overflowY="hidden"
       >
-        <chakra.div maxW="1200px" mx={'auto'}>
-          <Flex justifyContent="space-between">
-            <Flex>
+        <chakra.div h="4.5rem" mx="auto" maxW="1200px">
+          <Flex
+            w="full"
+            h="full"
+            px="6"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Flex align="flex-start">
               <Link href="/">
                 <Image
                   alt="logo"
-                  m={'8px'}
-                  boxSize={75}
+                  my={'8px'}
+                  boxSize={51}
                   src={'/icon-white.png'}
                 />
               </Link>
             </Flex>
-            <Flex alignItems="normal" m={8}>
+            <Flex justify="flex-end" align="center"  m={8}>
               <HStack
                 spacing="5"
                 display={{
                   base: "none",
                   md: "flex",
                 }}
+                justify={'end'}
               >
                 <Popover>
                   <PopoverTrigger>
@@ -356,14 +363,12 @@ export default function NavBar() {
                       color="elision.50"
                       display="inline-flex"
                       alignItems="center"
-                      fontSize="lg"
                       _hover={{
                         color: cl,
                       }}
                       _focus={{
                         boxShadow: "none",
                       }}
-                      rightIcon={<IoIosArrowDown />}
                     >
                       Features
                     </Button>
@@ -419,13 +424,14 @@ export default function NavBar() {
                 }}
               >
                 <Button
-                  color="elision.500"
                   _hover={{
                     color: "elision.50",
-                    bg: "elision.200"
+                    bg: "elision.200",
+                    borderColor: "transparent"
                   }}
-                  variant="solid"
-                  bg="brand.100"
+                  variant="outline"
+                  borderColor="elision.100"
+                  color="elision.100"
                 >
                   Enter App
                 </Button>

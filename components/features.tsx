@@ -100,7 +100,7 @@ export default function Features() {
         {features.map((feature, index) => (
           <Box
             key={index}
-            bg="brand.300"
+            bg="elision.600"
             p={6}
             rounded="lg"
             textAlign="center"
