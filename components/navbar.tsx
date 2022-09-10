@@ -329,15 +329,15 @@ export default function NavBar() {
         w="full"
         overflowY="hidden"
       >
-        <chakra.div maxW="1200px" mx={'auto'}>
-          <Flex justifyContent="space-between">
+        <chakra.div px={12}>
+          <Flex justifyContent="space-between" align={'center'}>
             <Flex>
               <Link href="/">
                 <Image
                   alt="logo"
                   m={'8px'}
-                  boxSize={75}
-                  src={'/icon-white.png'}
+                  w={190}
+                  src={'/elsn3.png'}
                 />
               </Link>
             </Flex>

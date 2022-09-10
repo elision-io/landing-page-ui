@@ -17,8 +17,8 @@ interface IFeature {
 
 const features: IFeature[] = [
   {
-    heading: 'Payments',
-    content: 'Choose from Stripe, Paddle, Braintree, or PayPal to launch your product quickly.',
+    heading: 'Rewards',
+    content: 'Liquidity providers will earn rewards by providing the underlying assets to write option contracts.',
     icon: (
       <svg
         width={36}
@@ -38,8 +38,8 @@ const features: IFeature[] = [
     )
   },
   {
-    heading: 'Invoicing',
-    content: 'Webhooks are wired up to automatically email customers PDF receipts and invoices.',
+    heading: 'Strategies',
+    content: 'Options trading strategies are simplified so that users are ready to start utilizing simple and advanced trading tactics.',
     icon: (
       <svg
         width={36}
@@ -59,8 +59,8 @@ const features: IFeature[] = [
     )
   },
   {
-    heading: 'API Included',
-    content: 'Roll your own API to easily connect with other apps or services. Pull in updates.',
+    heading: 'Staking',
+    content: 'Contribute to the Elision ecosystem by staking $ELX token and receive share of settlement fees.',
     icon: (
       <svg
         width={36}
@@ -84,10 +84,9 @@ const features: IFeature[] = [
 export default function Features() {
   return (
       <Box
-        px={4}
+        px={12}
         p={{ base: 5, md: 10 }}
         py={32}
-        maxW={1200}
         mx={"auto"}
         w={"full"}
         height={'85vh'}
@@ -96,11 +95,16 @@ export default function Features() {
       <chakra.h3 fontSize="4xl" fontWeight="bold" mb={20} textAlign="center">
         Everything your app needs and more
       </chakra.h3>
-      <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} placeItems="center" spacing={10} mb={4}>
+      <SimpleGrid 
+        columns={{ base: 1, md: 3 }}
+        placeItems="center"
+        spacing={10}
+        mb={4}
+      >
         {features.map((feature, index) => (
           <Box
             key={index}
-            bg="brand.300"
+            bg="elision.600"
             p={6}
             rounded="lg"
             textAlign="center"

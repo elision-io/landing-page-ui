@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import { Box, Flex } from "@chakra-ui/react";
 import Hero from "components/hero"
 import Features from "components/features";
-import Milestones from "components/timeline";
 
 const Home: NextPage = () => {
   return (
@@ -17,7 +16,6 @@ const Home: NextPage = () => {
         overflow={'visible'}
       >
         <Features />
-        <Milestones />
       </Flex>
     </Box>
   )

@@ -16,9 +16,8 @@ export default function Hero() {
       height={'85vh'}
     >
       <Box
-        px={4}
+        px={12}
         py={32}
-        maxW={1200}
         mx={"auto"}
         w={"full"}
       >
@@ -70,10 +69,10 @@ export default function Hero() {
               size="lg"
               cursor="pointer"
               color="elision.500"
-                _hover={{
-                  color: "elision.50",
-                  bg: "elision.200"
-                }}
+              _hover={{
+                color: "elision.50",
+                bg: "elision.200"
+              }}
               variant="solid"
               bg="elision.100"
             >

@@ -8,8 +8,8 @@ export default function Layout({ children }: any) {
       <Navbar />
       <Head>
         <title>Elision</title>
-        <meta name="description" content="Derivatives trading platform" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Options trading platform" />
+        <link rel="icon" href="/logo-white.png" />
       </Head>
       <main>{children}</main>
       <Footer />
