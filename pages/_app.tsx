@@ -1,16 +1,19 @@
-import { mainTheme } from 'theme'
-import type { AppProps } from 'next/app'
 import { ChakraProvider } from "@chakra-ui/react";
-import Layout from "components/layout";
-import '@fontsource/montserrat/200.css'
 import '@fontsource/montserrat';
-import '@fontsource/open-sans'
+import '@fontsource/montserrat/200.css';
+import '@fontsource/open-sans';
+import Layout from "components/layout";
+import type { AppProps } from 'next/app';
+import { mainTheme } from 'theme';
+import { WalletSelectorContextProvider } from "../contexts/WalletSelectorContext";
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider resetCSS theme={mainTheme}>
       <Layout>
-        <Component {...pageProps} />
+        <WalletSelectorContextProvider>
+          <Component {...pageProps} />
+        </WalletSelectorContextProvider>
       </Layout>
     </ChakraProvider>
   )

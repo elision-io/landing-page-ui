@@ -1,7 +1,7 @@
-import type { NextPage } from 'next'
 import { Box, Flex } from "@chakra-ui/react";
-import Hero from "components/hero"
 import Features from "components/features";
+import Hero from "components/hero";
+import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return (
