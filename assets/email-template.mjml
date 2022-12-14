@@ -1,0 +1,38 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-image
+          width="100px"
+          align="left"
+          src="https://d1c6ccc987f9ho.cloudfront.net/logos/elx-icon-black-right.svg"
+        ></mj-image>
+
+        <mj-divider border-color="#4f4f4f" />
+
+        <mj-text font-size="15px" font-family="Open Sans">
+          At Elision Labs, we specialize in providing top-quality blockchain
+          infrastructure services to help businesses and organizations leverage
+          the power of this innovative technology. Our team of experts has
+          extensive experience in building and maintaining secure and scalable
+          blockchain networks, and we are committed to delivering exceptional
+          products and services to our users.
+        </mj-text>
+        <mj-text font-size="15px" font-family="Open Sans">
+          Our services focus on blockchain infrastructure, with services such as
+          block data streams, chain API development, smart contract auditing,
+          developer tools for decentralized applications, cloud solutions
+          architecture, and general consulting.
+        </mj-text>
+        <mj-text font-size="15px" font-family="Open Sans">
+          We have worked with clients in a variety of industries, and we are
+          confident that we can help your organization achieve its goals with
+          our blockchain infrastructure solutions.
+        </mj-text>
+        <mj-text font-size="15px" font-family="Open Sans">
+          We look forward to the opportunity to work with you.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
