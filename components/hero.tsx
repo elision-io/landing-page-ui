@@ -1,10 +1,9 @@
 import {
-  chakra,
   Box,
-  Button,
-  Flex,
+  Button, chakra, Flex,
   HStack
 } from "@chakra-ui/react";
+import Wallet from "./wallet";
 
 export default function Hero() {
   return (
@@ -78,6 +77,7 @@ export default function Hero() {
             >
               Start Trading
             </Button>
+            <Wallet />
           </HStack>
         </Box>
       </Box>
