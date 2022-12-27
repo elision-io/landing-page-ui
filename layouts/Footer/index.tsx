@@ -1,7 +1,6 @@
 import { Box, Container, Stack, Text } from "@chakra-ui/react";
+import SocialButton from "components/SocialButton";
 import { FaBook, FaDiscord, FaGithub, FaTwitter } from "react-icons/fa";
-import SocialButton from "./SocialButton";
-
 export default function Footer(): JSX.Element {
   return (
     <Box>

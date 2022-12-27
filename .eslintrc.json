@@ -1,6 +1,48 @@
 {
   "extends": [
-    "plugin:react/jsx-runtime",
-    "plugin:@next/next/recommended"
-  ]
+    "plugin:@nrwl/nx/react-typescript",
+    "next",
+    "next/core-web-vitals"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "@next/next/no-html-link-for-pages": [
+          "error",
+          "examples/next/pages"
+        ],
+        "no-console": "off"
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {}
+    }
+  ],
+  "env": {
+    "jest": true,
+    "commonjs": true,
+    "browser": true,
+    "es6": true,
+    "node": true
+  }
 }

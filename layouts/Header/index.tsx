@@ -13,19 +13,15 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import type { Account } from "contexts/WalletSelectorContext";
-import { useWalletSelector } from "contexts/WalletSelectorContext";
+import Features from "components/Features";
+import WalletSelector from "components/WalletSelector";
 import { useScroll } from "framer-motion";
-import React, { useState } from "react";
+import React from "react";
 import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
-import Features from "./Features";
 
 export default function Header() {
-  const { selector, modal, accounts, accountId } = useWalletSelector();
-  const [account, setAccount] = useState<Account | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
   const ref = React.useRef(null);
   const [y, setY] = React.useState(0);
   const height = ref.current ? ref.current.getBoundingClientRect() : 0;
@@ -34,68 +30,6 @@ export default function Header() {
     return scrollY.onChange(() => setY(scrollY.get()));
   }, [scrollY]);
   const mobileNav = useDisclosure();
-
-  const handleSignIn = () => {
-    modal.show();
-  };
-
-  const handleSignOut = async () => {
-    const wallet = await selector.wallet();
-
-    wallet.signOut().catch((err: any) => {
-      console.log("Failed to sign out");
-      console.error(err);
-    });
-  };
-
-  const handleSwitchWallet = () => {
-    modal.show();
-  };
-
-  const handleSwitchAccount = () => {
-    const currentIndex = accounts.findIndex((x) => x.accountId === accountId);
-    const nextIndex = currentIndex < accounts.length - 1 ? currentIndex + 1 : 0;
-
-    const nextAccountId = accounts[nextIndex].accountId;
-
-    selector.setActiveAccount(nextAccountId);
-
-    alert(`Switched account to ${nextAccountId}`);
-  };
-
-  const handleVerifyOwner = async () => {
-    const wallet = await selector.wallet();
-    try {
-      const owner = await wallet.verifyOwner({
-        message: "test message for verification",
-      });
-
-      if (owner) {
-        alert(`Signature for verification: ${JSON.stringify(owner)}`);
-      }
-    } catch (err: any) {
-      const message =
-        err instanceof Error ? err.message : "Something went wrong";
-      alert(message);
-    }
-  };
-
-  if (loading) {
-    return null;
-  }
-
-  if (!accountId) {
-    return (
-      <Button
-        colorScheme="brand"
-        variant="solid"
-        onClick={handleSignIn}
-        size="lg"
-      >
-        Connect Wallet
-      </Button>
-    );
-  }
 
   const MobileNavContent = (
     <VStack
@@ -148,7 +82,7 @@ export default function Header() {
           <Flex justifyContent="space-between" align={"center"}>
             <Flex>
               <Link href="/">
-                <Image alt="logo" m={"8px"} w={190} src={"/elsn3.png"} />
+                <Image alt="logo" m={"8px"} w={190} src={"png/elsn3.png"} />
               </Link>
             </Flex>
             <Flex alignItems="normal" m={8}>
@@ -239,6 +173,7 @@ export default function Header() {
                 >
                   Enter App
                 </Button>
+                <WalletSelector />
               </HStack>
               <IconButton
                 display={{
