@@ -1,22 +1,22 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import "@fontsource/montserrat";
-import "@fontsource/montserrat/200.css";
-import "@fontsource/open-sans";
-import { WalletSelectorContextProvider } from "contexts/WalletSelectorContext";
-import Layout from "layout/index";
-import type { AppProps } from "next/app";
-import { mainTheme } from "theme";
+import '@fontsource/montserrat';
+import '@fontsource/montserrat/200.css';
+import '@fontsource/open-sans';
+import Layout from "components/layout";
+import type { AppProps } from 'next/app';
+import { mainTheme } from 'theme';
+import { WalletSelectorContextProvider } from "../contexts/WalletSelectorContext";
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider resetCSS theme={mainTheme}>
-      <WalletSelectorContextProvider>
-        <Layout>
+      <Layout>
+        <WalletSelectorContextProvider>
           <Component {...pageProps} />
-        </Layout>
-      </WalletSelectorContextProvider>
+        </WalletSelectorContextProvider>
+      </Layout>
     </ChakraProvider>
-  );
+  )
 }
 
-export default App;
+export default App

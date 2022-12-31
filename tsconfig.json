@@ -17,35 +17,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": "./",
     "incremental": true,
+    "baseUrl": "./",
     "paths": {
-      "assets/": [
-        "assets/*"
-      ],
-      "components/": [
+      "components/*": [
         "components/*"
       ],
-      "contexts/": [
-        "contexts/*"
-      ],
-      "layout/": [
-        "layout/*"
-      ],
-      "pages/": [
-        "pages/*"
-      ],
-      "theme/": [
+      "theme/*": [
         "theme/*"
-      ],
+      ]
     }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "src",
-    "commitlint.config.js"
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules"
