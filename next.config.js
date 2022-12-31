@@ -1,14 +1,19 @@
-const withNx = require("@nrwl/next/plugins/with-nx");
+const withPWA = require("next-pwa")({
+  dest: "public",
+  disable:
+    process.env.NODE_ENV === "development" ||
+    process.env.NODE_ENV === "preview" ||
+    process.env.NODE_ENV === "production",
+  // delete two lines above to enable PWA in production deployment
+  // add your own icons to public/manifest.json
+  // to re-generate manifest.json, you can visit https://tomitm.github.io/appmanifest/
+});
 
-/**
- * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
- **/
-const nextConfig = {
-  nx: {
-    // Set this to true if you would like to to use SVGR
-    // See: https://github.com/gregberge/svgr
-    svgr: false,
+/** @type {import('next').NextConfig} */
+module.exports = withPWA({
+  swcMinify: true,
+  reactStrictMode: true,
+  eslint: {
+    dirs: ["src"],
   },
-};
-
-module.exports = withNx(nextConfig);
+});

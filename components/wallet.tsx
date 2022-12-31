@@ -1,29 +1,19 @@
-import { Button, ButtonGroup, useToast } from "@chakra-ui/react";
+import { Button, chakra } from "@chakra-ui/react";
 import { useWalletSelector } from "contexts/WalletSelectorContext";
-import { useState, useEffect, useCallback, useRef } from "react";
 import { providers, utils } from "near-api-js";
-import type {
-  AccountView,
-  CodeResult,
-} from "near-api-js/lib/providers/provider";
-import type { Transaction } from "@near-wallet-selector/core";
+import type { AccountView } from "near-api-js/lib/providers/provider";
+import { NextComponentType } from "next";
+import { useCallback, useEffect, useState } from "react";
+import type { Account } from "../contexts/WalletSelectorContext";
 
-type Account = AccountView & {
-  account_id: string;
-};
+const SUGGESTED_DONATION = "0";
+const BOATLOAD_OF_GAS = utils.format.parseNearAmount("0.00000000003")!;
 
-const WalletSelector = () => {
+const Wallet: NextComponentType = () => {
   const { selector, modal, accounts, accountId } = useWalletSelector();
   const [account, setAccount] = useState<Account | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const toast = useToast();
-  const toastIdRef = useRef();
 
-  type Submitted = SubmitEvent & {
-    target: { elements: { [key: string]: HTMLInputElement } };
-  };
-
-  const CONTRACT_ID = "guest-book.testnet";
   const getAccount = useCallback(async (): Promise<Account | null> => {
     if (!accountId) {
       return null;
@@ -82,7 +72,7 @@ const WalletSelector = () => {
 
     selector.setActiveAccount(nextAccountId);
 
-    toast({ description: `Switched account to ${nextAccountId}` });
+    alert(`Switched account to  ${nextAccountId}`);
   };
 
   const handleVerifyOwner = async () => {
@@ -93,69 +83,33 @@ const WalletSelector = () => {
       });
 
       if (owner) {
-        toast({
-          description: `Signature for verification: ${JSON.stringify(owner)}`,
-        });
+        alert(`Signature for verification: ${JSON.stringify(owner)}`);
       }
     } catch (err: any) {
       const message =
         err instanceof Error ? err.message : "Something went wrong";
-      toast({ description: message });
+      alert(message);
     }
   };
 
-  if (!account) {
-    return (
-      <Button
-        isLoading={loading}
-        loadingText="Connecting"
-        colorScheme="brand"
-        variant="solid"
-        onClick={handleSignIn}
-        size="lg"
-      >
-        Connect Wallet
-      </Button>
-    );
+  if (loading) {
+    return <Spinner color="red.500" />;
   }
+
+  if (!account) {
+    return <Button onClick={handleSignIn}>Log in</Button>;
+  }
+
   return (
-    <ButtonGroup isAttached>
-      <Button
-        colorScheme="brand"
-        variant="solid"
-        onClick={handleSignOut}
-        size="lg"
-      >
-        Disconnect
-      </Button>
-      <Button
-        colorScheme="brand"
-        variant="solid"
-        onClick={handleSwitchWallet}
-        size="lg"
-      >
-        Switch
-      </Button>
-      <Button
-        colorScheme="brand"
-        variant="solid"
-        onClick={handleVerifyOwner}
-        size="lg"
-      >
-        Verify
-      </Button>
+    <chakra.div>
+      <Button onClick={handleSignOut}>Log out</Button>
+      <Button onClick={handleSwitchWallet}>Switch Wallet</Button>
+      <Button onClick={handleVerifyOwner}>Verify Owner</Button>
       {accounts.length > 1 && (
-        <Button
-          colorScheme="brand"
-          variant="solid"
-          onClick={handleSwitchAccount}
-          size="lg"
-        >
-          Accounts
-        </Button>
+        <Button onClick={handleSwitchAccount}>Switch Account</Button>
       )}
-    </ButtonGroup>
+    </chakra.div>
   );
 };
 
-export default WalletSelector;
+export default Wallet;

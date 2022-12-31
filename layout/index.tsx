@@ -9,7 +9,7 @@ export default function Layout({ children }: any) {
     <>
       <Header />
       <Head>
-        <title>Elision Labs</title>
+        <title>Elision</title>
         <meta name="description" content="Options trading platform" />
         <meta name="application-name" content={APP_NAME} />
         <meta name="apple-mobile-web-app-capable" content="yes" />

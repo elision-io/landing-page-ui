@@ -1,5 +1,5 @@
 import { Box, chakra, Link, SimpleGrid, Stack } from "@chakra-ui/react";
-import Section from "components/Section";
+import Section from "./Section";
 
 export interface FeaturesProps {
   horizontal?: boolean | undefined;
@@ -29,7 +29,7 @@ const Features = ({ horizontal }: FeaturesProps) => (
       }}
     >
       <Section
-        title="Scalability"
+        title="Analytics"
         icon={
           <path
             strokeLinecap="round"
@@ -43,7 +43,7 @@ const Features = ({ horizontal }: FeaturesProps) => (
       </Section>
 
       <Section
-        title="Reliability"
+        title="Engagement"
         icon={
           <path
             strokeLinecap="round"
@@ -72,7 +72,7 @@ const Features = ({ horizontal }: FeaturesProps) => (
 
       <Section
         title="Integrations"
-        icon={
+        description={
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -85,7 +85,7 @@ const Features = ({ horizontal }: FeaturesProps) => (
       </Section>
 
       <Section
-        title="Automation"
+        title="Automations"
         icon={
           <path
             strokeLinecap="round"
@@ -190,7 +190,7 @@ const Features = ({ horizontal }: FeaturesProps) => (
                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
               />
             </chakra.svg>
-            <chakra.span ml={3}>Contact</chakra.span>
+            <chakra.span ml={3}>Contact Sales</chakra.span>
           </Link>
         </Box>
       </Stack>
