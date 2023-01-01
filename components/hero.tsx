@@ -1,4 +1,5 @@
 import { Box, Button, chakra, Flex, HStack } from "@chakra-ui/react";
+import WalletConnector from "./WalletConnector";
 
 const Hero = () => (
   <Flex
@@ -65,6 +66,7 @@ const Hero = () => (
           >
             Start Building
           </Button>
+          <WalletConnector />
         </HStack>
       </Box>
     </Box>

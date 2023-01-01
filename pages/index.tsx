@@ -1,24 +1,6 @@
-import { Box, Flex } from "@chakra-ui/react";
-import Features from "components/Features";
-import Hero from "components/Hero";
 import type { NextPage } from "next";
+import HomeTemplate from "templates/HomeTemplate";
 
-const HomePage: NextPage = () => {
-  return (
-    <Box>
-      <Hero />
-      <Flex
-        bgGradient={"linear(to-b, #867df9, #82eaff)"}
-        bgSize={"contain"}
-        bgRepeat={"no-repeat"}
-        mt={-1}
-        flexDir={"column"}
-        overflow={"visible"}
-      >
-        <Features />
-      </Flex>
-    </Box>
-  );
-};
+const Home: NextPage = () => <HomeTemplate />;
 
-export default HomePage;
+export default Home;

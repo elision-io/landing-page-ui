@@ -1,47 +1,41 @@
-import { Button, ButtonGroup, Link, useToast } from "@chakra-ui/react";
+import { Button, ButtonGroup, useToast } from "@chakra-ui/react";
+import type { Account } from "config/interfaces";
+import { useWalletSelector } from "contexts/WalletSelectorContext";
 import { providers } from "near-api-js";
 import type { AccountView } from "near-api-js/lib/providers/provider";
-import NearLogo from "public/svg/near-logo.svg";
 import { useCallback, useEffect, useState } from "react";
-import { FaPlus } from "react-icons/fa";
-import { Account } from "contexts/auth";
-import { useWallet } from "contexts/WalletSelectorContext";
 
-export default function Wallet() {
-  const {
-    connect,
-    disconnect,
-    activeAccountId,
-    errorMessage,
-    selector,
-    modal,
-  } = useWallet();
+export default function WalletConnector(): JSX.Element {
+  const { selector, modal, accounts, accountId } = useWalletSelector();
+  const toast = useToast();
   const [account, setAccount] = useState<Account | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const toast = useToast();
+
   const getAccount = useCallback(async (): Promise<Account | null> => {
-    if (!activeAccountId) {
+    if (!accountId) {
       return null;
     }
 
     const { network } = selector.options;
-    const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+    const provider = new providers.JsonRpcProvider({
+      url: network.nodeUrl ? network?.nodeUrl : "https://rpc.testnet.near.org",
+    });
 
     return provider
       .query<AccountView>({
         request_type: "view_account",
         finality: "final",
-        account_id: activeAccountId,
+        account_id: accountId,
       })
       .then((data) => ({
         ...data,
-        account_id: activeAccountId,
+        account_id: accountId,
       }));
-  }, [activeAccountId, selector.options]);
+  }, [accountId, selector.options]);
 
   useEffect(() => {
-    if (!activeAccountId) {
-      return setAccount(null);
+    if (!accountId) {
+      setAccount(null);
     }
 
     setLoading(true);
@@ -50,7 +44,7 @@ export default function Wallet() {
       setAccount(nextAccount);
       setLoading(false);
     });
-  }, [activeAccountId, getAccount]);
+  }, [accountId, getAccount]);
 
   const handleSignIn = () => {
     modal.show();
@@ -59,14 +53,9 @@ export default function Wallet() {
   const handleSignOut = async () => {
     const wallet = await selector.wallet();
 
-    wallet.signOut().catch((err: any) => {
-      toast({
-        title: "Error: Failed to sign out",
-        description: err.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
+    wallet.signOut().catch((err) => {
+      console.log("Failed to sign out");
+      console.error(err);
     });
   };
 
@@ -75,9 +64,7 @@ export default function Wallet() {
   };
 
   const handleSwitchAccount = () => {
-    const currentIndex = accounts.findIndex(
-      (x) => x.accountId === activeAccountId
-    );
+    const currentIndex = accounts.findIndex((x) => x.accountId === accountId);
     const nextIndex = currentIndex < accounts.length - 1 ? currentIndex + 1 : 0;
 
     const nextAccountId = accounts[nextIndex].accountId;
@@ -85,9 +72,9 @@ export default function Wallet() {
     selector.setActiveAccount(nextAccountId);
 
     toast({
+      status: "info",
       title: "Switched Account",
       description: `Account switched to ${nextAccountId}`,
-      status: "info",
       duration: 5000,
       isClosable: true,
     });
@@ -97,14 +84,14 @@ export default function Wallet() {
     const wallet = await selector.wallet();
     try {
       const owner = await wallet.verifyOwner({
-        message: "Verifying ownership of NEAR account",
+        message: "Signature to verify ownership of NEAR account",
       });
 
       if (owner) {
         toast({
-          title: "Verifed Signature",
-          description: `Signature ${JSON.stringify(owner)} verified`,
           status: "success",
+          title: "Signature Verified",
+          description: `Account ownership verified: ${JSON.stringify(owner)}`,
           duration: 5000,
           isClosable: true,
         });
@@ -113,9 +100,9 @@ export default function Wallet() {
       const message =
         err instanceof Error ? err.message : "Something went wrong";
       toast({
-        title: "Error",
-        description: `${message}`,
         status: "error",
+        title: "Signature Verification Failed",
+        description: message,
         duration: 5000,
         isClosable: true,
       });
@@ -124,34 +111,27 @@ export default function Wallet() {
 
   return (
     <>
-      {!account ? (
+      {account ? (
+        <ButtonGroup isAttached>
+          <Button onClick={handleSwitchWallet}>Switch Wallet</Button>
+          <Button onClick={handleVerifyOwner}>Verify Owner</Button>
+          <Button onClick={handleSignOut}>Log out</Button>
+          {accounts.length > 1 && (
+            <Button onClick={handleSwitchAccount}>Switch Account</Button>
+          )}
+        </ButtonGroup>
+      ) : (
         <ButtonGroup>
           <Button
             onClick={handleSignIn}
             isLoading={loading}
             spinnerPlacement="start"
-            leftIcon={<NearLogo />}
+            loadingText="Loading"
+            size="lg"
+            variant="outline"
           >
             Connect Wallet
           </Button>
-          <Button
-            as={Link}
-            href="https://wallet.near.org/create"
-            isExternal
-            spinnerPlacement="start"
-            leftIcon={<FaPlus />}
-          >
-            Create
-          </Button>
-        </ButtonGroup>
-      ) : (
-        <ButtonGroup isAttached>
-          <Button onClick={handleSignOut}>Log out</Button>
-          <Button onClick={handleSwitchWallet}>Switch Wallet</Button>
-          <Button onClick={handleVerifyOwner}>Verify Owner</Button>
-          {accounts.length > 1 && (
-            <Button onClick={handleSwitchAccount}>Switch Account</Button>
-          )}
         </ButtonGroup>
       )}
     </>

@@ -1,9 +1,10 @@
 import Footer from "components/Footer";
 import Header from "components/Header";
 import Head from "next/head";
+import { ReactNode } from "react";
 
 interface BasicLayoutProps {
-  children: any;
+  children: ReactNode;
 }
 export default function BasicLayout({ children }: BasicLayoutProps) {
   return (
@@ -11,7 +12,12 @@ export default function BasicLayout({ children }: BasicLayoutProps) {
       <Header />
       <Head>
         <title>Elision Labs</title>
-        <meta name="description" content="Building the Future Web" />
+        <meta property="og:title" content="Elision Labs" key="title" />
+        <meta
+          name="description"
+          property="og:description"
+          content="Building the Future Web"
+        />
         <link rel="icon" href="png/logo-white.png" />
       </Head>
       <main>{children}</main>
