@@ -4,16 +4,23 @@ import type { AccountView } from "near-api-js/lib/providers/provider";
 import NearLogo from "public/svg/near-logo.svg";
 import { useCallback, useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import type { Account } from "../contexts/WalletSelectorContext";
-import { useWalletSelector } from "../contexts/WalletSelectorContext";
+import { Account } from "contexts/auth";
+import { useWallet } from "contexts/WalletSelectorContext";
 
 export default function Wallet() {
-  const { selector, modal, accounts, accountId } = useWalletSelector();
+  const {
+    connect,
+    disconnect,
+    activeAccountId,
+    errorMessage,
+    selector,
+    modal,
+  } = useWallet();
   const [account, setAccount] = useState<Account | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const toast = useToast();
   const getAccount = useCallback(async (): Promise<Account | null> => {
-    if (!accountId) {
+    if (!activeAccountId) {
       return null;
     }
 
@@ -24,16 +31,16 @@ export default function Wallet() {
       .query<AccountView>({
         request_type: "view_account",
         finality: "final",
-        account_id: accountId,
+        account_id: activeAccountId,
       })
       .then((data) => ({
         ...data,
-        account_id: accountId,
+        account_id: activeAccountId,
       }));
-  }, [accountId, selector.options]);
+  }, [activeAccountId, selector.options]);
 
   useEffect(() => {
-    if (!accountId) {
+    if (!activeAccountId) {
       return setAccount(null);
     }
 
@@ -43,7 +50,7 @@ export default function Wallet() {
       setAccount(nextAccount);
       setLoading(false);
     });
-  }, [accountId, getAccount]);
+  }, [activeAccountId, getAccount]);
 
   const handleSignIn = () => {
     modal.show();
@@ -68,7 +75,9 @@ export default function Wallet() {
   };
 
   const handleSwitchAccount = () => {
-    const currentIndex = accounts.findIndex((x) => x.accountId === accountId);
+    const currentIndex = accounts.findIndex(
+      (x) => x.accountId === activeAccountId
+    );
     const nextIndex = currentIndex < accounts.length - 1 ? currentIndex + 1 : 0;
 
     const nextAccountId = accounts[nextIndex].accountId;

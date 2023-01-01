@@ -7,7 +7,7 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import Wallet from "components/wallet";
+import Wallet from "components/Wallet";
 import type { NextPage } from "next";
 
 const WalletPage: NextPage = () => {
