@@ -1,22 +1,17 @@
-import { Button } from "@chakra-ui/react";
-import { providers, utils } from "near-api-js";
-import type {
-    AccountView,
-    CodeResult
-} from "near-api-js/lib/providers/provider";
-import { NextComponentType } from "next";
-import { Fragment, useCallback, useEffect, useState } from "react";
+import { Button, ButtonGroup, Link, useToast } from "@chakra-ui/react";
+import { providers } from "near-api-js";
+import type { AccountView } from "near-api-js/lib/providers/provider";
+import NearLogo from "public/svg/near-logo.svg";
+import { useCallback, useEffect, useState } from "react";
+import { FaPlus } from "react-icons/fa";
 import type { Account } from "../contexts/WalletSelectorContext";
-import { CONTRACT_ID, useWalletSelector } from "../contexts/WalletSelectorContext";
+import { useWalletSelector } from "../contexts/WalletSelectorContext";
 
-const SUGGESTED_DONATION = "0";
-const BOATLOAD_OF_GAS = utils.format.parseNearAmount("0.00000000003")!;
-
-const Wallet: NextComponentType = () => {
+export default function Wallet() {
   const { selector, modal, accounts, accountId } = useWalletSelector();
   const [account, setAccount] = useState<Account | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-
+  const toast = useToast();
   const getAccount = useCallback(async (): Promise<Account | null> => {
     if (!accountId) {
       return null;
@@ -36,21 +31,6 @@ const Wallet: NextComponentType = () => {
         account_id: accountId,
       }));
   }, [accountId, selector.options]);
-
-  const getMessages = useCallback(() => {
-    const { network } = selector.options;
-    const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
-
-    return provider
-      .query<CodeResult>({
-        request_type: "call_function",
-        account_id: CONTRACT_ID,
-        method_name: "getMessages",
-        args_base64: "",
-        finality: "optimistic",
-      })
-      .then((res) => JSON.parse(Buffer.from(res.result).toString()));
-  }, [selector]);
 
   useEffect(() => {
     if (!accountId) {
@@ -73,8 +53,13 @@ const Wallet: NextComponentType = () => {
     const wallet = await selector.wallet();
 
     wallet.signOut().catch((err: any) => {
-      console.log("Failed to sign out");
-      console.error(err);
+      toast({
+        title: "Error: Failed to sign out",
+        description: err.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     });
   };
 
@@ -90,66 +75,76 @@ const Wallet: NextComponentType = () => {
 
     selector.setActiveAccount(nextAccountId);
 
-    alert("Switched account to " + nextAccountId);
+    toast({
+      title: "Switched Account",
+      description: `Account switched to ${nextAccountId}`,
+      status: "info",
+      duration: 5000,
+      isClosable: true,
+    });
   };
 
   const handleVerifyOwner = async () => {
     const wallet = await selector.wallet();
     try {
       const owner = await wallet.verifyOwner({
-        message: "test message for verification",
+        message: "Verifying ownership of NEAR account",
       });
 
       if (owner) {
-        alert(`Signature for verification: ${JSON.stringify(owner)}`);
+        toast({
+          title: "Verifed Signature",
+          description: `Signature ${JSON.stringify(owner)} verified`,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
       }
     } catch (err: any) {
       const message =
         err instanceof Error ? err.message : "Something went wrong";
-      alert(message);
+      toast({
+        title: "Error",
+        description: `${message}`,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
-  if (loading) {
-    return null;
-  }
-
-  if (!account) {
-    return (
-      <Fragment>
-        <div>
-          <Button onClick={handleSignIn}>Log in</Button>
-        </div>
-        <Fragment>
-            <p>
-                This app demonstrates a key element of NEAR’s UX: once an app has
-                permission to make calls on behalf of a user (that is, once a user signs
-                in), the app can make calls to the blockchain for them without prompting
-                extra confirmation. So you’ll see that if you don’t include a donation,
-                your message gets posted right to the guest book.
-            </p>
-            <p>
-                But if you do add a donation, then NEAR will double-check that you’re ok
-                with sending money to this app.
-            </p>
-            <p>Go ahead and sign in to try it out!</p>
-            </Fragment>
-        </Fragment>
-    );
-  }
-
   return (
-    <Fragment>
-      <div>
-        <Button onClick={handleSignOut}>Log out</Button>
-        <Button onClick={handleSwitchWallet}>Switch Wallet</Button>
-        <Button onClick={handleVerifyOwner}>Verify Owner</Button>
-        {accounts.length > 1 && (
-          <Button onClick={handleSwitchAccount}>Switch Account</Button>
-        )}
-      </div>
-    </Fragment>
+    <>
+      {!account ? (
+        <ButtonGroup>
+          <Button
+            onClick={handleSignIn}
+            isLoading={loading}
+            spinnerPlacement="start"
+            leftIcon={<NearLogo />}
+          >
+            Connect Wallet
+          </Button>
+          <Button
+            as={Link}
+            href="https://wallet.near.org/create"
+            isExternal
+            spinnerPlacement="start"
+            leftIcon={<FaPlus />}
+          >
+            Create
+          </Button>
+        </ButtonGroup>
+      ) : (
+        <ButtonGroup isAttached>
+          <Button onClick={handleSignOut}>Log out</Button>
+          <Button onClick={handleSwitchWallet}>Switch Wallet</Button>
+          <Button onClick={handleVerifyOwner}>Verify Owner</Button>
+          {accounts.length > 1 && (
+            <Button onClick={handleSwitchAccount}>Switch Account</Button>
+          )}
+        </ButtonGroup>
+      )}
+    </>
   );
-};
-
-export default Wallet
+}

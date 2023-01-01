@@ -1,20 +1,19 @@
-import { setupCoin98Wallet } from "@near-wallet-selector/coin98-wallet";
 import type { AccountState, WalletSelector } from "@near-wallet-selector/core";
 import { setupWalletSelector } from "@near-wallet-selector/core";
 import { setupDefaultWallets } from "@near-wallet-selector/default-wallets";
-import { setupHereWallet } from "@near-wallet-selector/here-wallet";
-import { setupMathWallet } from "@near-wallet-selector/math-wallet";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
 import type { WalletSelectorModal } from "@near-wallet-selector/modal-ui";
 import { setupModal } from "@near-wallet-selector/modal-ui";
 import { setupNearWallet } from "@near-wallet-selector/near-wallet";
-import { setupNearFi } from "@near-wallet-selector/nearfi";
-import { setupNightly } from "@near-wallet-selector/nightly";
-import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
 import { setupSender } from "@near-wallet-selector/sender";
-import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
 import type { AccountView } from "near-api-js/lib/providers/provider";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { distinctUntilChanged, map } from "rxjs";
 export const CONTRACT_ID = "guest-book.testnet";
 
@@ -32,15 +31,15 @@ interface WalletSelectorContextValue {
   accountId: string | null;
 }
 
-
-
 export type Account = AccountView & {
   account_id: string;
 };
 
-const WalletSelectorContext = React.createContext<WalletSelectorContextValue | null>(null);
+const WalletSelectorContext = createContext<WalletSelectorContextValue | null>(
+  null
+);
 
-export const WalletSelectorContextProvider: NextFunctionComponent = ({ children }: any) => {
+export const WalletSelectorContextProvider = ({ children }: any) => {
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
   const [accounts, setAccounts] = useState<Array<AccountState>>([]);
@@ -51,32 +50,9 @@ export const WalletSelectorContextProvider: NextFunctionComponent = ({ children 
       debug: true,
       modules: [
         ...(await setupDefaultWallets()),
+        setupMeteorWallet(),
         setupNearWallet(),
         setupSender(),
-        setupMathWallet(),
-        setupNightly(),
-        setupMeteorWallet(),
-        setupHereWallet(),
-        setupCoin98Wallet(),
-        setupNearFi(),
-        setupWalletConnect({
-          projectId: "c4f79cc...",
-          metadata: {
-            name: "NEAR Wallet Selector",
-            description: "NEAR Wallet Selector",
-            url: "https://github.com/near/wallet-selector",
-            icons: ["https://avatars.githubusercontent.com/u/37784886"],
-          },
-        }),
-        setupNightlyConnect({
-          url: "wss://relay.nightly.app/app",
-          appMetadata: {
-            additionalInfo: "",
-            application: "NEAR Wallet Selector",
-            description: "NEAR Wallet Selector - Nightly Connect",
-            icon: "https://near.org/wp-content/uploads/2020/09/cropped-favicon-192x192.png",
-          },
-        }),
       ],
     });
     const _modal = setupModal(_selector, { contractId: CONTRACT_ID });
@@ -120,7 +96,8 @@ export const WalletSelectorContextProvider: NextFunctionComponent = ({ children 
     return null;
   }
 
-  const accountId = accounts.find((account) => account.active)?.accountId || null;
+  const accountId =
+    accounts.find((account) => account.active)?.accountId || null;
 
   return (
     <WalletSelectorContext.Provider
