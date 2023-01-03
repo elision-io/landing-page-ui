@@ -16,6 +16,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
+import MainButton from "components/Button/MainButton";
 import { useScroll } from "framer-motion";
 import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
@@ -165,17 +166,7 @@ export default function Header() {
                   md: "flex",
                 }}
               >
-                <Button
-                  color="elision.500"
-                  _hover={{
-                    color: "elision.50",
-                    bg: "elision.200",
-                  }}
-                  variant="solid"
-                  bg="brand.100"
-                >
-                  Enter App
-                </Button>
+                <MainButton>Enter App</MainButton>
               </HStack>
               <IconButton
                 display={{

@@ -11,10 +11,7 @@ import type { NextPage } from "next";
 
 const WalletTemplate: NextPage = () => {
   return (
-    <Box
-      bgGradient={{ sm: "linear(to-r, blue.600, purple.600)" }}
-      py={{ base: "12", md: "24" }}
-    >
+    <Box py={{ base: "12", md: "24" }}>
       <Container
         maxW="md"
         py={{ base: "0", sm: "8" }}

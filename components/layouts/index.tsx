@@ -3,10 +3,10 @@ import Header from "components/Header";
 import Head from "next/head";
 import { ReactNode } from "react";
 
-interface BasicLayoutProps {
+interface LayoutProps {
   children: ReactNode;
 }
-export default function BasicLayout({ children }: BasicLayoutProps) {
+export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Header />

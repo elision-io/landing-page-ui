@@ -8,7 +8,6 @@ import { setupModal } from "@near-wallet-selector/modal-ui";
 import { setupNearWallet } from "@near-wallet-selector/near-wallet";
 import { setupNearFi } from "@near-wallet-selector/nearfi";
 import { setupSender } from "@near-wallet-selector/sender";
-import { CONTRACT_ID } from "config/constants";
 import type { ReactNode } from "react";
 import {
   createContext,
@@ -19,7 +18,6 @@ import {
   useState,
 } from "react";
 import { distinctUntilChanged, map } from "rxjs";
-
 declare global {
   interface Window {
     selector: WalletSelector;
@@ -33,6 +31,8 @@ interface WalletSelectorContextValue {
   accounts: Array<AccountState>;
   accountId: string | null;
 }
+
+const CONTRACT_ID = "guest-book.testnet";
 
 const WalletSelectorContext = createContext<WalletSelectorContextValue | null>(
   null

@@ -1,5 +1,6 @@
-import { Box, Button, chakra, Flex, HStack } from "@chakra-ui/react";
-import WalletConnector from "./WalletConnector";
+import { Box, chakra, Flex, HStack } from "@chakra-ui/react";
+import MainButton from "components/Button/MainButton";
+import SecondaryButton from "components/Button/SecondaryButton";
 
 const Hero = () => (
   <Flex
@@ -28,45 +29,8 @@ const Hero = () => (
           decentralized web.
         </chakra.p>
         <HStack>
-          <Button
-            as="a"
-            w={{
-              base: "full",
-              sm: "auto",
-            }}
-            variant="outline"
-            size="lg"
-            mb={{
-              base: 2,
-              sm: 0,
-            }}
-            cursor="pointer"
-          >
-            Learn More
-          </Button>
-          <Button
-            as="a"
-            w={{
-              base: "full",
-              sm: "auto",
-            }}
-            mb={{
-              base: 2,
-              sm: 0,
-            }}
-            size="lg"
-            cursor="pointer"
-            color="elision.500"
-            _hover={{
-              color: "elision.50",
-              bg: "elision.200",
-            }}
-            variant="solid"
-            bg="elision.100"
-          >
-            Start Building
-          </Button>
-          <WalletConnector />
+          <SecondaryButton size="lg">Learn More</SecondaryButton>
+          <MainButton size="lg">Start Building</MainButton>
         </HStack>
       </Box>
     </Box>
