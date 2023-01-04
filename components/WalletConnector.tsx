@@ -128,7 +128,7 @@ export default function WalletConnector(): JSX.Element {
             spinnerPlacement="start"
             loadingText="Loading"
             size="lg"
-            variant="outline"
+            variant="dark"
           >
             Connect Wallet
           </Button>

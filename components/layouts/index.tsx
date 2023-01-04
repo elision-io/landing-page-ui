@@ -1,3 +1,4 @@
+import { Flex } from "@chakra-ui/react";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import Head from "next/head";
@@ -8,7 +9,18 @@ interface LayoutProps {
 }
 export default function Layout({ children }: LayoutProps) {
   return (
-    <>
+    <Flex
+      as="nav"
+      direction="column"
+      align="center"
+      maxW={{ xl: "1200px" }}
+      m="0 auto"
+      justify="space-between"
+      wrap="wrap"
+      w="100%"
+      mb={8}
+      p={8}
+    >
       <Header />
       <Head>
         <title>Elision Labs</title>
@@ -22,6 +34,6 @@ export default function Layout({ children }: LayoutProps) {
       </Head>
       <main>{children}</main>
       <Footer />
-    </>
+    </Flex>
   );
 }

@@ -18,6 +18,7 @@ import {
   useState,
 } from "react";
 import { distinctUntilChanged, map } from "rxjs";
+
 declare global {
   interface Window {
     selector: WalletSelector;

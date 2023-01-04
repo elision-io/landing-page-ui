@@ -1,4 +1,4 @@
-import { Box, chakra, Flex, HStack } from "@chakra-ui/react";
+import { Box, Button, chakra, Flex, HStack } from "@chakra-ui/react";
 import MainButton from "components/Button/MainButton";
 import SecondaryButton from "components/Button/SecondaryButton";
 
@@ -31,6 +31,7 @@ const Hero = () => (
         <HStack>
           <SecondaryButton size="lg">Learn More</SecondaryButton>
           <MainButton size="lg">Start Building</MainButton>
+          <Button variant="flat">Testnet</Button>
         </HStack>
       </Box>
     </Box>

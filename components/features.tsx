@@ -124,7 +124,7 @@ export default function Features() {
             <Text fontSize="md" mt={4}>
               {feature.content}
             </Text>
-            <Link href="#" mt={4} fontSize="sm" color="brand.100">
+            <Link href="#" mt={4} fontSize="sm" color="elision.100">
               Learn more →
             </Link>
           </Box>

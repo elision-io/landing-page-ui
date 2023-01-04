@@ -8,24 +8,14 @@ export interface MainButtonProps {
 const MainButton = ({ children, size }: MainButtonProps) => (
   <Button
     as="a"
-    w={{
-      base: "full",
-      sm: "auto",
-    }}
-    mb={{
-      base: 2,
-      sm: 0,
-    }}
-    size={size ? size : "md"}
+    size={size}
     cursor="pointer"
     color="elision.500"
     _hover={{
       color: "elision.50",
       bg: "elision.200",
       transform: "translateY(-2px)",
-      boxShadow: "lg",
     }}
-    variant="solid"
     bg="elision.100"
   >
     {children}
