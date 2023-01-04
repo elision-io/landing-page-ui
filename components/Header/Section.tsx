@@ -12,15 +12,16 @@ const Section = ({ title, icon, children }: SectionProps) => (
     p={3}
     display="flex"
     alignItems="start"
-    rounded="lg"
+    rounded="md"
     _hover={{
-      bg: "elision.600",
+      bg: "elision.500",
     }}
   >
     <chakra.svg
       flexShrink={0}
       h={6}
       w={6}
+      mr={3}
       color="elision.50"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

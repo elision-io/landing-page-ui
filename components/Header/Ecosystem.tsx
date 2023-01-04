@@ -22,8 +22,6 @@ const Ecosystem = ({ horizontal }: EcosystemProps) => (
         base: 6,
         sm: 8,
       }}
-      px={5}
-      py={6}
       p={{
         sm: 8,
       }}
@@ -72,7 +70,7 @@ const Ecosystem = ({ horizontal }: EcosystemProps) => (
 
       <Section
         title="Integrations"
-        description={
+        icon={
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -108,6 +106,7 @@ const Ecosystem = ({ horizontal }: EcosystemProps) => (
       display={{
         sm: "flex",
       }}
+      rounded="md"
     >
       <Stack
         direction={{
@@ -118,7 +117,7 @@ const Ecosystem = ({ horizontal }: EcosystemProps) => (
           sm: 10,
         }}
       >
-        <Box display="flow-root">
+        <Box display="flow-root" rounded="md">
           <Link
             m={-3}
             p={3}
@@ -159,7 +158,7 @@ const Ecosystem = ({ horizontal }: EcosystemProps) => (
           </Link>
         </Box>
 
-        <Box display="flow-root">
+        <Box display="flow-root" rounded={"md"}>
           <Link
             m={-3}
             p={3}
@@ -190,7 +189,7 @@ const Ecosystem = ({ horizontal }: EcosystemProps) => (
                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
               />
             </chakra.svg>
-            <chakra.span ml={3}>Contact Sales</chakra.span>
+            <chakra.span ml={3}>Contact Team</chakra.span>
           </Link>
         </Box>
       </Stack>

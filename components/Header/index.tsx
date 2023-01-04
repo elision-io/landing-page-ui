@@ -3,7 +3,12 @@ import React from "react";
 import {
   Button,
   chakra,
-  CloseButton,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
   Flex,
   HStack,
   IconButton,
@@ -12,12 +17,12 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Text,
   useDisclosure,
   useOutsideClick,
   VStack,
 } from "@chakra-ui/react";
 
-import MainButton from "components/Button/MainButton";
 import { useScroll } from "framer-motion";
 import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
@@ -40,30 +45,43 @@ export default function Header() {
   });
 
   const MobileNavContent = (
-    <VStack
-      pos="absolute"
-      display={mobileNav.isOpen ? "flex" : "none"}
-      flexDirection="column"
-      bg="elision.600"
-      rounded="sm"
-      shadow="dark-lg"
-      ref={ref}
+    <Drawer
+      placement="top"
+      initialFocusRef={ref}
+      isOpen={mobileNav.isOpen}
+      onClose={mobileNav.onClose}
     >
-      <CloseButton
-        aria-label="Close menu"
-        justifySelf="self-start"
-        onClick={mobileNav.onClose}
-      />
-      <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
-        Dashboard
-      </Button>
-      <Button w="full" variant="ghost" leftIcon={<AiOutlineInbox />}>
-        Inbox
-      </Button>
-      <Button w="full" variant="ghost" leftIcon={<BsFillCameraVideoFill />}>
-        Videos
-      </Button>
-    </VStack>
+      <DrawerOverlay />
+      <DrawerContent>
+        <DrawerCloseButton color="black" />
+        <DrawerHeader
+          borderBottomWidth="2px"
+          bgGradient="linear(to-bl, #82eaff, #8882ff)"
+        >
+          <HStack mx={4}>
+            <Image alt="logo" w={39} h={39} src={"png/icon-black.png"} />
+            <Text color="elision.800">&nbsp;Navigation</Text>
+          </HStack>
+        </DrawerHeader>
+        <DrawerBody bg="elision.600">
+          <VStack>
+            <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
+              Ecosystem
+            </Button>
+            <Button w="full" variant="ghost" leftIcon={<AiOutlineInbox />}>
+              Learn
+            </Button>
+            <Button
+              w="full"
+              variant="ghost"
+              leftIcon={<BsFillCameraVideoFill />}
+            >
+              About
+            </Button>
+          </VStack>
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
   );
 
   return (
@@ -73,7 +91,7 @@ export default function Header() {
       transition="box-shadow 0.2s"
       w="full"
       overflowY="hidden"
-      px={12}
+      px={8}
     >
       <chakra.div>
         <Flex justifyContent="space-between" align={"center"}>
@@ -85,6 +103,13 @@ export default function Header() {
                 src={"png/elsn3.png"}
                 display={{ base: "none", lg: "flex" }}
               />
+              <Image
+                alt="logo"
+                w={50}
+                h={50}
+                src={"png/logo-white.png"}
+                display={{ base: "flex", lg: "none" }}
+              />
             </Link>
           </Flex>
           <Flex alignItems="normal" m={8}>
@@ -92,25 +117,12 @@ export default function Header() {
               spacing="5"
               display={{
                 base: "none",
-                md: "flex",
+                lg: "flex",
               }}
             >
               <Popover>
                 <PopoverTrigger>
-                  <Button
-                    bg="elision.600"
-                    color="elision.50"
-                    display="inline-flex"
-                    alignItems="center"
-                    fontSize="lg"
-                    _hover={{
-                      color: "elision.100",
-                    }}
-                    _focus={{
-                      boxShadow: "none",
-                    }}
-                    rightIcon={<IoIosArrowDown />}
-                  >
+                  <Button variant="ghost" rightIcon={<IoIosArrowDown />}>
                     Ecosystem
                   </Button>
                 </PopoverTrigger>
@@ -124,60 +136,30 @@ export default function Header() {
                   <Ecosystem />
                 </PopoverContent>
               </Popover>
-              <Button
-                bg="elision.600"
-                color="elision.50"
-                display="inline-flex"
-                alignItems="center"
-                fontSize="md"
-                _hover={{
-                  color: "elision.100",
-                }}
-                _focus={{
-                  boxShadow: "none",
-                }}
-              >
-                Learn
-              </Button>
-              <Button
-                bg="elision.600"
-                color="elision.50"
-                display="inline-flex"
-                alignItems="center"
-                fontSize="md"
-                _hover={{
-                  color: "elision.100",
-                }}
-                _focus={{
-                  boxShadow: "none",
-                }}
-              >
-                About
-              </Button>
+              <Button variant="ghost">Learn</Button>
+              <Button variant="ghost">About</Button>
             </HStack>
           </Flex>
-          <Flex justify="flex-end" align="center" color="gray.400">
+          <Flex justify="flex-end" align="center">
             <HStack
               spacing="5"
               display={{
                 base: "none",
-                md: "flex",
+                lg: "flex",
               }}
             >
-              <MainButton>Enter App</MainButton>
+              <Button variant="primary">Enter App</Button>
             </HStack>
             <IconButton
               display={{
                 base: "flex",
-                md: "none",
+                lg: "none",
               }}
+              alignSelf="flex-end"
               aria-label="Open menu"
               fontSize="20px"
-              color="gray.800"
-              _dark={{
-                color: "inherit",
-              }}
-              variant="ghost"
+              color="elision.50"
+              variant="outline"
               icon={<AiOutlineMenu />}
               onClick={mobileNav.onOpen}
             />

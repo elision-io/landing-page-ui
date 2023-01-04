@@ -9,8 +9,6 @@ import semanticTokens from "./tokens";
 export const mainTheme: Record<string, any> = extendTheme({
   config,
   fonts: {
-    // old fonts from the previous theme
-    // TODO: update the fonts when we transition to the Design System
     heading:
       "SFMono-Regular, Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Menlo, Courier, monospace",
     body: "SFMono-Regular, Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Menlo, Courier, monospace",

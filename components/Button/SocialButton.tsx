@@ -1,5 +1,4 @@
 import { chakra, VisuallyHidden } from "@chakra-ui/react";
-import { ReactNode } from "react";
 
 export interface SocialButtonProps {
   children: any;
@@ -11,15 +10,15 @@ const SocialButton = ({ children, label, href }: SocialButtonProps) => (
   <chakra.button
     bgGradient="linear(to-br, #82eaff, #8882ff)"
     rounded={"full"}
-    w={8}
-    h={8}
+    w={10}
+    h={10}
     cursor={"pointer"}
     as={"a"}
     href={href}
     display={"inline-flex"}
     alignItems={"center"}
     justifyContent={"center"}
-    transition={"background 0.3s ease"}
+    transition={"background 0.2s ease-in-out"}
     _hover={{
       color: "elision.50",
       bg: "elision.200",
