@@ -16,13 +16,22 @@ export default function Footer() {
       >
         <Text>© 2022 Elision Protocol. All rights reserved</Text>
         <Stack direction={"row"} spacing={6}>
-          <SocialButton label={"Twitter"} href={"#"}>
+          <SocialButton
+            label={"Twitter"}
+            href={"https://twitter.com/ElisionLabs"}
+          >
             <FaTwitter size={20} />
           </SocialButton>
-          <SocialButton label={"Discord"} href={"#"}>
+          <SocialButton
+            label={"Discord"}
+            href={"https://discord.gg/umdYPbRXa3"}
+          >
             <FaDiscord size={20} />
           </SocialButton>
-          <SocialButton label={"GitHub"} href={"#"}>
+          <SocialButton
+            label={"GitHub"}
+            href={"https://github.com/elision-labs"}
+          >
             <FaGithub size={20} />
           </SocialButton>
           <SocialButton label={"Docs"} href={"#"}>
