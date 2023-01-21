@@ -4,7 +4,7 @@ export const Button: ComponentStyleConfig = {
   baseStyle: {
     transitionTimingFunction: "ease-in-out",
     transitionProperty: "box-shadow, background, color, border, transform",
-    transitionDuration: "0.3s",
+    transitionDuration: "0.5s",
     _hover: {
       transform: "translateY(-2px)",
       boxShadow: "none",
@@ -37,6 +37,19 @@ export const Button: ComponentStyleConfig = {
         boxShadow: "none",
       },
     },
+    secondary: {
+      bg: "elision.200",
+      border: "2px solid black",
+      boxShadow: "3px 4px 0px #82eaff",
+      color: "elision.700",
+      _hover: {
+        color: "elision.700",
+        bgGradient: "linear(to-br, #82eaff, #8882ff)",
+        border: "2px solid black",
+        transform: "translateY(-2px)",
+        boxShadow: "none",
+      },
+    },
     outline: {
       border: "2px solid lightgray",
       boxShadow: "3px 4px 0px white",
@@ -47,7 +60,6 @@ export const Button: ComponentStyleConfig = {
       },
     },
     ghost: {
-      border: "none",
       boxShadow: "0px 0px 0px white",
       bg: "transparent",
       border: "0px solid transparent",

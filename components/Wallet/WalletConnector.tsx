@@ -112,12 +112,20 @@ export default function WalletConnector(): JSX.Element {
   return (
     <>
       {account ? (
-        <ButtonGroup isAttached>
-          <Button onClick={handleSwitchWallet}>Switch Wallet</Button>
-          <Button onClick={handleVerifyOwner}>Verify Owner</Button>
-          <Button onClick={handleSignOut}>Log out</Button>
+        <ButtonGroup isAttached size={"md"}>
+          <Button onClick={handleSwitchWallet} variant="secondary">
+            Switch Wallet
+          </Button>
+          <Button onClick={handleVerifyOwner} variant="secondary">
+            Verify Owner
+          </Button>
+          <Button onClick={handleSignOut} variant="secondary">
+            Log out
+          </Button>
           {accounts.length > 1 && (
-            <Button onClick={handleSwitchAccount}>Switch Account</Button>
+            <Button onClick={handleSwitchAccount} variant="secondary">
+              Switch Account
+            </Button>
           )}
         </ButtonGroup>
       ) : (
@@ -128,7 +136,7 @@ export default function WalletConnector(): JSX.Element {
             spinnerPlacement="start"
             loadingText="Loading"
             size="lg"
-            variant="dark"
+            variant="primary"
           >
             Connect Wallet
           </Button>
