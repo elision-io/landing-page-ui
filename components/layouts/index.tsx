@@ -24,7 +24,7 @@ export default function Layout({ children }: LayoutProps) {
         <meta
           name="description"
           property="og:description"
-          content="Building the Future Web"
+          content="Building the Open Web"
         />
         <link rel="icon" href="png/logo-white.png" />
       </Head>
