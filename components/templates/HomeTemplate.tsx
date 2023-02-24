@@ -4,21 +4,7 @@ import Hero from "components/Hero";
 import type { NextPage } from "next";
 
 const HomeTemplate: NextPage = () => {
-  return (
-    <Box>
-      <Hero />
-      <Flex
-        bgGradient={"linear(to-b, #867df9, #82eaff)"}
-        bgSize={"contain"}
-        bgRepeat={"no-repeat"}
-        mt={-1}
-        flexDir={"column"}
-        overflow={"visible"}
-      >
-        <Features />
-      </Flex>
-    </Box>
-  );
+  return;
 };
 
 export default HomeTemplate;

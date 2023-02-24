@@ -8,10 +8,8 @@ import { setupModal } from "@near-wallet-selector/modal-ui";
 import { setupNearWallet } from "@near-wallet-selector/near-wallet";
 import { setupNearFi } from "@near-wallet-selector/nearfi";
 import { setupSender } from "@near-wallet-selector/sender";
-import type { ReactNode } from "react";
 import {
   createContext,
-  FC,
   useCallback,
   useContext,
   useEffect,
@@ -39,9 +37,7 @@ const WalletSelectorContext = createContext<WalletSelectorContextValue | null>(
   null
 );
 
-export const WalletSelectorContextProvider: FC<{
-  children: ReactNode;
-}> = ({ children }) => {
+export const WalletSelectorContextProvider = ({ children }: any) => {
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
   const [accounts, setAccounts] = useState<Array<AccountState>>([]);

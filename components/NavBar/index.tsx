@@ -29,7 +29,7 @@ import { BsFillCameraVideoFill } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import Ecosystem from "./Ecosystem";
 
-export default function Header() {
+export default function NavBar() {
   const ref = React.useRef(null);
   const [y, setY] = React.useState(0);
   const height = ref.current ? ref.current.getBoundingClientRect() : 0;
