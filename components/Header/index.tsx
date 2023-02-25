@@ -17,7 +17,6 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-  Text,
   useDisclosure,
   useOutsideClick,
   VStack,
@@ -56,12 +55,14 @@ export default function Header() {
         <DrawerCloseButton color="black" />
         <DrawerHeader
           borderBottomWidth="2px"
-          bgGradient="linear(to-bl, #1afed8, #ba5de6)"
+          bgGradient="linear(to-bl, #1afed8, #4dfee1)"
         >
-          <HStack mx={4}>
-            <Image alt="logo" w={39} h={39} src={"png/icon-black.png"} />
-            <Text color="elision.800">&nbsp;Navigation</Text>
-          </HStack>
+          <Image
+            alt="logo"
+            w={"full"}
+            h={55}
+            src={"svg/elision-black-nb.svg"}
+          />
         </DrawerHeader>
         <DrawerBody bg="elision.600">
           <VStack>
