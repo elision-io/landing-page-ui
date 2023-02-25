@@ -26,7 +26,7 @@ export default function Layout({ children }: LayoutProps) {
           property="og:description"
           content="Building the Open Web"
         />
-        <link rel="icon" href="png/logo-white.png" />
+        <link rel="icon" href="png/elision.png" />
       </Head>
       <main>{children}</main>
       <Footer />

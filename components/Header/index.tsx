@@ -56,7 +56,7 @@ export default function Header() {
         <DrawerCloseButton color="black" />
         <DrawerHeader
           borderBottomWidth="2px"
-          bgGradient="linear(to-bl, #82eaff, #8882ff)"
+          bgGradient="linear(to-bl, #1afed8, #ba5de6)"
         >
           <HStack mx={4}>
             <Image alt="logo" w={39} h={39} src={"png/icon-black.png"} />
@@ -99,15 +99,15 @@ export default function Header() {
             <Link href="/">
               <Image
                 alt="logo"
-                w={190}
-                src={"png/elsn3.png"}
+                w={300}
+                src={"png/elision-color-nb.png"}
                 display={{ base: "none", lg: "flex" }}
               />
               <Image
                 alt="logo"
-                w={50}
-                h={50}
-                src={"png/logo-white.png"}
+                w={57}
+                h={57}
+                src={"png/elision.png"}
                 display={{ base: "flex", lg: "none" }}
               />
             </Link>

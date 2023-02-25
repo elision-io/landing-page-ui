@@ -8,7 +8,7 @@ const semanticTokens = {
     primary: "elision.100",
     primaryHover: "elision.200",
     primaryPressed: "elision.100",
-    background: "elision.600",
+    background: "elision.700",
     body: "elision.50",
     bodyInverted: "elision.700",
     disabled: "elision.400",

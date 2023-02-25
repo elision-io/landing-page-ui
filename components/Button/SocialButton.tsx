@@ -8,7 +8,7 @@ export interface SocialButtonProps {
 
 const SocialButton = ({ children, label, href }: SocialButtonProps) => (
   <chakra.button
-    bgGradient="linear(to-br, #82eaff, #8882ff)"
+    bgGradient="linear(to-br, #1afed8, #4dfee1)"
     rounded={"full"}
     w={10}
     h={10}

@@ -8,7 +8,7 @@ const HomeTemplate: NextPage = () => {
     <Box>
       <Hero />
       <Flex
-        bgGradient={"linear(to-b, #867df9, #82eaff)"}
+        bgGradient={"linear(to-b, #1afed8, #01e4be)"}
         bgSize={"contain"}
         bgRepeat={"no-repeat"}
         mt={-1}

@@ -107,7 +107,7 @@ export default function Features() {
               p={2}
               w="max-content"
               color="elision.50"
-              bgGradient="linear(to-br, #82eaff, #8882ff)"
+              bg="elision.250"
               rounded="md"
               marginInline="auto"
               pos="absolute"

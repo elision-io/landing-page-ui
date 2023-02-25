@@ -22,7 +22,7 @@ const WalletTemplate: NextPage = () => {
         maxW="xl"
         py={{ base: "0", sm: "8" }}
         px={{ base: "4", sm: "10" }}
-        bgGradient={"linear(to-b, #867df9, #82eaff)"}
+        bgGradient={"linear(to-b, #867df9, #1afed8)"}
         bg="elision.400"
         boxShadow={{ base: "none", sm: "xl" }}
         borderRadius={{ base: "none", sm: "xl" }}

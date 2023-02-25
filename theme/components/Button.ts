@@ -40,11 +40,11 @@ export const Button: ComponentStyleConfig = {
     secondary: {
       bg: "elision.200",
       border: "2px solid black",
-      boxShadow: "3px 4px 0px #82eaff",
+      boxShadow: "3px 4px 0px #8882ff",
       color: "elision.700",
       _hover: {
         color: "elision.700",
-        bgGradient: "linear(to-br, #82eaff, #8882ff)",
+        bgGradient: "linear(to-br, #1afed8, #8882ff)",
         border: "2px solid black",
         transform: "translateY(-2px)",
         boxShadow: "none",
